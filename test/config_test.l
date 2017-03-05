@@ -8,6 +8,3 @@
   ("app-helpers"  ("custom-variables.l"))
   ("auth-type"    "token")
   ]
-
-# Mock the path for testing
-# (setq *API_ROOT (pack (pwd) "/" (car (file)) "test/www"))
