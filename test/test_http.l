@@ -15,12 +15,22 @@
     (setq *Url "api/v1/default")
     (assert-equal "api/v1" (get-http-url) "Ensure *Url is returned without final segment") ]
 
+[de test-200-ok ()
+  (if *CPU
+    "{\"Status\":\"200 OK\"}"
+    "{\"Status\": \"200 OK\"}" ]
+
+[de test-404-not-found ()
+  (if *CPU
+    "{\"Status\":\"404 Not Found\",\"Error-Message\":\"Missing test.l\"}"
+    "{\"Status\": \"404 Not Found\", \"Error-Message\": \"Missing test.l\"}" ]
+
 [execute
   '(test-http-methods)
   '(test-url)
   '(assert-equal "Not Found" (http-code 404) "Ensure 404 response is given")
-  '(assert-equal "{\"Status\": \"404 Not Found\", \"Error-Message\": \"Missing test.l\"}" (out "/dev/null" (http-error 404 "Missing test.l")) "Ensure 404 error response is given")
-  '(assert-equal "{\"Status\": \"200 OK\"}" (out "/dev/null" (http-msg 200)) "Ensure 200 response is given")
+  '(assert-equal (test-404-not-found) (out "/dev/null" (http-error 404 "Missing test.l")) "Ensure 404 error response is given")
+  '(assert-equal (test-200-ok) (out "/dev/null" (http-msg 200)) "Ensure 200 response is given")
   '(assert-equal '(("index.html") "api/") *Allow "Validated allowed endpoints")
   '(assert-equal 1 *API_VERSION "Ensure *API_VERSION is set from custom-variables.l")
   ]
