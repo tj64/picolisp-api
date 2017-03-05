@@ -1,0 +1,19 @@
+# Example config.l for the PicoLisp REST API
+#
+# Configuration options:
+#
+# api-port:     HTTP server port
+# api-index:    default file served by http server
+# api-root:     path of API files
+# app-data:     path of application data, outside of API root
+# app-helpers:  list of app helpers to load, inside of API root
+# auth-type:    authentication type
+
+[de *API_CONFIG
+  ("api-port"     8080)
+  ("api-index"    "index.l")
+  ("api-root"     "/opt/www")
+  ("app-data"     "/usr/local/etc")
+  ("app-helpers"  ("custom-variables.l"))
+  ("auth-type"    "token")
+  ]
