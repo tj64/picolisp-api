@@ -10,8 +10,6 @@
 
 (load (pack (car (file)) "loader.l"))
 
-(when symbols (symbols 'unit 'pico))
-
 (load (pack (car (file)) ".modules/picolisp-unit/HEAD/unit.l"))
 
 # Load tests

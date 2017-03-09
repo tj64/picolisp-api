@@ -22,7 +22,7 @@
 
 (mime "md" "text/markdown; charset=UTF-8" 60)
 
-(if *CPU
+(if (== 64 64)
     (api-json-load-64bit)
     (api-json-load-32bit) )
 

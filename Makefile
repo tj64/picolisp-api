@@ -10,12 +10,13 @@ REPO_PREFIX ?= https://github.com/aw
 ## Edit below
 JSON_REPO = $(REPO_PREFIX)/picolisp-json.git
 JSON_DIR = $(PIL_MODULE_DIR)/picolisp-json/HEAD
-JSON_REF ?= v1.1.0
+JSON_REF ?= v2.0.0
 ## Edit above
 
 # Unit testing
 TEST_REPO = $(REPO_PREFIX)/picolisp-unit.git
 TEST_DIR = $(PIL_MODULE_DIR)/picolisp-unit/HEAD
+TEST_REF ?= v2.0.0
 
 # Generic
 .PHONY: all clean
@@ -31,12 +32,14 @@ $(JSON_DIR):
 
 $(TEST_DIR):
 		mkdir -p $(TEST_DIR) && \
-		git clone $(TEST_REPO) $(TEST_DIR)
+		git clone $(TEST_REPO) $(TEST_DIR) && \
+		cd $(TEST_DIR) && \
+		git checkout $(TEST_REF)
 
 check: all $(TEST_DIR) run-tests
 
 run-tests:
-		./test.l --config test/config_test.l
+		 PIL_NO_NAMESPACES=true ./test.l --config test/config_test.l
 
 clean:
 		rm -rf $(JSON_DIR) $(TEST_DIR)
