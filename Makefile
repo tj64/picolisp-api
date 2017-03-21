@@ -10,7 +10,7 @@ REPO_PREFIX ?= https://github.com/aw
 ## Edit below
 JSON_REPO = $(REPO_PREFIX)/picolisp-json.git
 JSON_DIR = $(PIL_MODULE_DIR)/picolisp-json/HEAD
-JSON_REF ?= v2.0.0
+JSON_REF ?= v2.1.0
 ## Edit above
 
 # Unit testing
